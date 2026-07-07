@@ -1,3 +1,4 @@
+<img width="1727" height="1002" alt="Screenshot 2026-07-08 at 3 30 58 AM" src="https://github.com/user-attachments/assets/d3313109-0636-4278-9503-07bab5e18b48" />
 # 🛒 Shopping Cart Application
 
 A full-stack Shopping Cart application built with **Astro.js**, **React**, **TypeScript**, following **Domain Driven Design (DDD)** principles and **Test Driven Development (TDD)** practices. The application is fully containerized using **Docker** and includes comprehensive backend testing.
@@ -318,5 +319,20 @@ http://localhost:4321
 # Author
 
 **Haree Prasad**
-
 Senior Software Engineer
+
+---
+
+# Screenshots
+
+## Product Management
+
+The Product Management page allows users to create, edit, and delete products, with real-time validation and toast notifications.
+
+![Product Management](https://github.com/user-attachments/assets/0130d1fa-d018-41ab-8a60-4ec57cdf6a38)
+
+## Shopping Cart
+
+The Shopping Cart page displays added products, allows quantity updates, and automatically recalculates the total amount.
+
+![Shopping Cart](https://github.com/user-attachments/assets/b98bab35-04b0-4a84-8f11-5b679997f6fc)
