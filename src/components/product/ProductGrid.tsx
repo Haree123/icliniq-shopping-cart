@@ -6,13 +6,18 @@ import type { Product } from '@/types/product';
 interface ProductGridProps {
   products: Product[];
   loading?: boolean;
-  onAddToCart?: (product: Product) => void;
+
+  onAddToCart: (productId: string) => void;
+  onEdit: (product: Product) => void;
+  onDelete: (productId: string) => void;
 }
 
 function ProductGrid({
   products,
   loading = false,
   onAddToCart,
+  onEdit,
+  onDelete,
 }: ProductGridProps) {
   if (products.length === 0) {
     return <EmptyProducts />;
@@ -34,6 +39,8 @@ function ProductGrid({
           product={product}
           loading={loading}
           onAddToCart={onAddToCart}
+          onEdit={onEdit}
+          onDelete={onDelete}
         />
       ))}
     </section>

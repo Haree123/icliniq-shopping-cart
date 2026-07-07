@@ -7,17 +7,23 @@ import AppToaster from '@/components/common/AppToaster';
 import ErrorState from '@/components/common/ErrorState';
 import ProductGrid from '@/components/product/ProductGrid';
 import ProductForm from '@/components/product/ProductForm';
+import EditProductDialog from '@/components/product/EditProductDialog';
 import ProductGridSkeleton from '@/components/product/ProductGridSkeleton';
 
 import { cartService } from '@/services/cart.service';
 import { productService } from '@/services/product.service';
 
 import type { Cart } from '@/types/cart';
-import type { CreateProductRequest, Product } from '@/types/product';
+import type {
+  CreateProductRequest,
+  Product,
+  UpdateProductRequest,
+} from '@/types/product';
 
 export default function ShoppingCart() {
   const [products, setProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<Cart | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const [loading, setLoading] = useState(true);
   const [processing, setProcessing] = useState(false);
@@ -60,6 +66,10 @@ export default function ShoppingCart() {
     setCart(cart);
   }
 
+  function handleEditProduct(product: Product) {
+    setSelectedProduct(product);
+  }
+
   async function handleAddToCart(product: Product) {
     try {
       setProcessing(true);
@@ -91,6 +101,47 @@ export default function ShoppingCart() {
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : 'Failed to create product.',
+      );
+    } finally {
+      setProcessing(false);
+    }
+  }
+
+  async function handleDeleteProduct(productId: string) {
+    try {
+      setProcessing(true);
+
+      await productService.delete(productId);
+
+      await refreshProducts();
+
+      toast.success('Product deleted successfully');
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : 'Failed to delete product',
+      );
+    } finally {
+      setProcessing(false);
+    }
+  }
+
+  async function handleUpdateProduct(
+    productId: string,
+    payload: UpdateProductRequest,
+  ) {
+    try {
+      setProcessing(true);
+
+      await productService.update(productId, payload);
+
+      await refreshProducts();
+
+      toast.success('Product updated successfully');
+
+      setSelectedProduct(null);
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : 'Failed to update product.',
       );
     } finally {
       setProcessing(false);
@@ -176,6 +227,18 @@ export default function ShoppingCart() {
         processing={processing}
       />
 
+      <EditProductDialog
+        open={selectedProduct !== null}
+        product={selectedProduct}
+        loading={processing}
+        onOpenChange={(open) => {
+          if (!open) {
+            setSelectedProduct(null);
+          }
+        }}
+        onSave={handleUpdateProduct}
+      />
+
       <main className="mx-auto max-w-7xl px-6 py-8">
         <ProductForm loading={processing} onSubmit={handleCreateProduct} />
 
@@ -190,7 +253,15 @@ export default function ShoppingCart() {
         <ProductGrid
           products={products}
           loading={processing}
-          onAddToCart={handleAddToCart}
+          onAddToCart={(productId) => {
+            const product = products.find((p) => p.id === productId);
+
+            if (product) {
+              handleAddToCart(product);
+            }
+          }}
+          onEdit={handleEditProduct}
+          onDelete={handleDeleteProduct}
         />
       </main>
     </>
