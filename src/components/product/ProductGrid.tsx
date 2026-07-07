@@ -12,6 +12,13 @@ interface ProductGridProps {
   onDelete: (productId: string) => void;
 }
 
+/**
+ * Displays a collection of products in a responsive grid layout.
+ *
+ * Renders an empty state when no products are available.
+ * Delegates product actions such as adding to cart, editing,
+ * and deleting to the parent component through callbacks.
+ */
 function ProductGrid({
   products,
   loading = false,

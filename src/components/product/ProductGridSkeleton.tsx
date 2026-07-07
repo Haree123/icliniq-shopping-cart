@@ -1,6 +1,11 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 
+/**
+ * Displays a loading placeholder for the product grid.
+ *
+ * Renders skeleton cards while product data is being fetched.
+ */
 function ProductGridSkeleton() {
   return (
     <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

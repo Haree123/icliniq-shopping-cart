@@ -20,7 +20,17 @@ interface ProductCardProps {
   onDelete: (productId: string) => void;
 }
 
-export default function ProductCard({
+/**
+ * Displays product information and provides actions for cart,
+ * edit, and delete operations.
+ *
+ * Shows the product name, description, price, and current stock,
+ * while disabling actions when the product is unavailable or
+ * an operation is in progress.
+ *
+ * @param props Product data and action callbacks.
+ */
+function ProductCard({
   product,
   loading = false,
   onAddToCart,
@@ -80,3 +90,5 @@ export default function ProductCard({
     </Card>
   );
 }
+
+export default ProductCard;

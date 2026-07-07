@@ -20,7 +20,16 @@ import type {
   UpdateProductRequest,
 } from '@/types/product';
 
-export default function ShoppingCart() {
+/**
+ * Main shopping cart page component.
+ *
+ * Coordinates product management and cart operations including:
+ * - loading initial product and cart data
+ * - creating, updating, and deleting products
+ * - adding, updating, and removing cart items
+ * - managing loading, error, and dialog states
+ */
+function ShoppingCart() {
   const [products, setProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<Cart | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -36,6 +45,12 @@ export default function ShoppingCart() {
     initialize();
   }, []);
 
+  /**
+   * Loads the initial product list and cart data in parallel.
+   *
+   * Updates application state after successful retrieval and
+   * handles initialization errors.
+   */
   async function initialize() {
     try {
       setLoading(true);
@@ -267,3 +282,5 @@ export default function ShoppingCart() {
     </>
   );
 }
+
+export default ShoppingCart;

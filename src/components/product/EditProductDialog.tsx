@@ -20,6 +20,17 @@ interface EditProductDialogProps {
   onSave: (productId: string, payload: UpdateProductRequest) => Promise<void>;
 }
 
+/**
+ * Dialog component for editing an existing product.
+ *
+ * Populates the form with the selected product data and allows users
+ * to update product fields before submitting changes.
+ *
+ * Handles form state internally and delegates persistence to the
+ * provided save callback.
+ *
+ * @param props Dialog state, product data, and update handler.
+ */
 function EditProductDialog({
   open,
   product,
