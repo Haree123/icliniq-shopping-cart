@@ -1,7 +1,18 @@
+/**
+ * Props required by the ErrorState component.
+ */
 interface ErrorStateProps {
   message: string;
 }
 
+/**
+ * Displays an error state message when an operation fails.
+ *
+ * Shows a user-friendly error heading along with the provided
+ * error details.
+ *
+ * @param props Error state configuration.
+ */
 function ErrorState({ message }: ErrorStateProps) {
   return (
     <div className="flex h-[400px] items-center justify-center">

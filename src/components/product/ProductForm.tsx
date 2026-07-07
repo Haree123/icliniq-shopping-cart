@@ -18,10 +18,13 @@ const INITIAL_FORM: CreateProductRequest = {
   stock: 0,
 };
 
-export default function ProductForm({
-  loading = false,
-  onSubmit,
-}: ProductFormProps) {
+/**
+ * Form component for creating a new product.
+ *
+ * Manages local form state and sends the completed product payload
+ * to the parent component through the onSubmit callback.
+ */
+function ProductForm({ loading = false, onSubmit }: ProductFormProps) {
   const [form, setForm] = useState<CreateProductRequest>(INITIAL_FORM);
 
   function updateField<K extends keyof CreateProductRequest>(
@@ -96,3 +99,5 @@ export default function ProductForm({
     </Card>
   );
 }
+
+export default ProductForm;

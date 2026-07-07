@@ -14,6 +14,9 @@ import { Separator } from '@/components/ui/separator';
 import type { Cart } from '@/types/cart';
 import { formatCurrency } from '../../lib/format';
 
+/**
+ * Props required by the CartSheet component.
+ */
 interface CartSheetProps {
   open: boolean;
   cart: Cart;
@@ -23,6 +26,14 @@ interface CartSheetProps {
   processing: boolean;
 }
 
+/**
+ * Displays the shopping cart in a side sheet.
+ *
+ * Allows users to review cart items, update quantities,
+ * remove items, and view the total cart amount.
+ *
+ * @param props Cart sheet state, cart data, and cart action handlers.
+ */
 function CartSheet({
   open,
   cart,

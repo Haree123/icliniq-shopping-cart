@@ -1,5 +1,11 @@
 import { PackageOpen } from 'lucide-react';
 
+/**
+ * Displays an empty state when no products are available.
+ *
+ * Provides a visual indicator and message informing users that
+ * products will appear after they are added.
+ */
 function EmptyProducts() {
   return (
     <div className="flex h-[350px] items-center justify-center rounded-lg border border-dashed">

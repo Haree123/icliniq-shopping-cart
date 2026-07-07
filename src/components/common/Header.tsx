@@ -3,12 +3,23 @@ import { ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
+/**
+ * Props required by the Header component.
+ */
 interface HeaderProps {
   title: string;
   cartItemCount: number;
   onCartClick?: () => void;
 }
 
+/**
+ * Application header component.
+ *
+ * Displays the page title and a shopping cart button with an item count
+ * badge when the cart contains products.
+ *
+ * @param props Header configuration and cart interaction handler.
+ */
 function Header({ title, cartItemCount, onCartClick }: HeaderProps) {
   return (
     <header className="border-b bg-background">
