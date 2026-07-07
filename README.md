@@ -1,4 +1,3 @@
-<img width="1727" height="1002" alt="Screenshot 2026-07-08 at 3 30 58 AM" src="https://github.com/user-attachments/assets/d3313109-0636-4278-9503-07bab5e18b48" />
 # 🛒 Shopping Cart Application
 
 A full-stack Shopping Cart application built with **Astro.js**, **React**, **TypeScript**, following **Domain Driven Design (DDD)** principles and **Test Driven Development (TDD)** practices. The application is fully containerized using **Docker** and includes comprehensive backend testing.
