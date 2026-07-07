@@ -35,6 +35,11 @@ interface ProductRepository {
    * @param id Product ID.
    */
   delete(id: string): Promise<void>;
+
+  /**
+   * Clears all products from the repository.
+   */
+  clear(): Promise<void>;
 }
 
 export type { ProductRepository };

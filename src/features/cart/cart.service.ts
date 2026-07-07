@@ -130,13 +130,20 @@ class CartService {
   }
 
   /**
-   * Returns the existing cart.
+   * Returns the current cart.
    *
-   * @throws {BadRequestError} If no cart exists.
+   * If a cart does not exist, a new one is created, persisted,
+   * and then returned.
+   *
+   * @returns The existing or newly created cart.
    */
   private async getExistingCart(): Promise<CartEntity> {
-    const cart = await this.cartRepository.find();
-    if (!cart) throw new BadRequestError('Cart not found');
+    let cart = await this.cartRepository.find();
+
+    if (!cart) {
+      cart = CartMapper.toEntity();
+      await this.cartRepository.create(cart);
+    }
 
     return cart;
   }

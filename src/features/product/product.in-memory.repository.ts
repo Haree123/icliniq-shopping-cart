@@ -58,6 +58,13 @@ class InMemoryProductRepository implements ProductRepository {
   public async delete(id: string): Promise<void> {
     this.products.delete(id);
   }
+
+  /**
+   * Clears all products from the repository.
+   */
+  public async clear(): Promise<void> {
+    this.products.clear();
+  }
 }
 
 export { InMemoryProductRepository };

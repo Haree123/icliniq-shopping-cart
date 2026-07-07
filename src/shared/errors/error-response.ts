@@ -1,7 +1,7 @@
 import { ApiError } from './api.error';
 import { ZodError } from 'zod';
 
-export class ErrorResponse {
+class ErrorResponse {
   static from(error: unknown): Response {
     if (error instanceof ApiError) {
       return Response.json(
@@ -41,3 +41,5 @@ export class ErrorResponse {
     );
   }
 }
+
+export { ErrorResponse };

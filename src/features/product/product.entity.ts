@@ -1,3 +1,5 @@
+import { BadRequestError } from '@/shared';
+
 import type { Product } from './product.types';
 
 class ProductEntity implements Product {
@@ -37,7 +39,7 @@ class ProductEntity implements Product {
    * @throws {Error} If the price is less than or equal to zero.
    */
   public updatePrice(price: number): void {
-    if (price <= 0) throw new Error('Price must be greater than zero');
+    if (price <= 0) throw new BadRequestError('Price must be greater than zero');
     this.price = price;
   }
 
@@ -51,7 +53,7 @@ class ProductEntity implements Product {
    */
 
   public updateStock(stock: number): void {
-    if (stock < 0) throw new Error('Stock cannot be negative');
+    if (stock < 0) throw new BadRequestError('Stock cannot be negative');
     this.stock = stock;
   }
 
@@ -80,9 +82,9 @@ class ProductEntity implements Product {
    * @throws {Error} If any validation rule is violated.
    */
   private validate(): void {
-    if (!this.name.trim()) throw new Error('Product name is required');
-    if (this.price <= 0) throw new Error('Price must be greater than zero');
-    if (this.stock < 0) throw new Error('Stock cannot be negative');
+    if (!this.name.trim()) throw new BadRequestError('Product name is required');
+    if (this.price <= 0) throw new BadRequestError('Price must be greater than zero');
+    if (this.stock < 0) throw new BadRequestError('Stock cannot be negative');
   }
 }
 
